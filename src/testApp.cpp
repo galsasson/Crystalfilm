@@ -1,67 +1,48 @@
 #include "testApp.h"
 
+ofxControlease *control;
+
 //--------------------------------------------------------------
 void testApp::setup(){
-    control.setup("Crystalfilm", 6002);
-    red = 0;
-    control.addInput("stroke RED", &red);
-    green = 0;
-    control.addInput("stroke GREEN", &green);
-    blue = 0;
-    control.addInput("stroke BLUE", &blue);
-    alpha = 100;
-    control.addInput("stroke ALPHA", &alpha);
-    translate.set(0, 0);
-    control.addInput("translate X", &translate.x);
-    control.addInput("translate Y", &translate.y);
+    control = new ofxControlease();
+    control->setup("Crystalfilm", 6002);
+    fabricAlpha = 1;
+    control->addInput("Fabric Alpha", &fabricAlpha);
+    brush.red = 0;
+    control->addInput("stroke RED", &brush.red);
+    brush.green = 0;
+    control->addInput("stroke GREEN", &brush.green);
+    brush.blue = 0;
+    control->addInput("stroke BLUE", &brush.blue);
+    brush.alpha = 160;
+    control->addInput("stroke ALPHA", &brush.alpha);
     scale.set(1, 1);
-    control.addInput("scale X", &scale.x);
-    control.addInput("scale Y", &scale.y);
-    blurResolution = 14;
-    control.addInput("Blur Resolution", &blurResolution);
-    blurRadius = 20;
-    control.addInput("Blur Radius", &blurRadius);
-    
-    
-    
+    control->addInput("scale X", &scale.x);
+    control->addInput("scale Y", &scale.y);
+    canvas.blurResolution = 14;
+    control->addInput("Blur Resolution", &canvas.blurResolution);
+    canvas.blurRadius = 10;
+    control->addInput("Blur Radius", &canvas.blurRadius);
     
 //    fabricImg.loadImage("art/texture-woven-fabric.jpg");
     fabricImg.loadImage("art/Yellow_Velvet_Fabric_Texture_by_Enchantedgal_Stock.jpg");
     cout<<"image size = "<<fabricImg.width<<"x"<<fabricImg.height<<endl;
     burnShader.load("shaders/PhotoshopMathFP");
-    horBlurShader.load("shaders/simpleBlurHorizontal");
-    canvasFbo.allocate(fabricImg.width, fabricImg.height, GL_RGBA);
-    blurFbo.allocate(fabricImg.width, fabricImg.height, GL_RGBA);
     
-    currentStroke = NULL;
-    screenToCanvasScale = ofVec2f((float)fabricImg.width / ofGetWidth(), (float)fabricImg.height / ofGetHeight());
+    brush.type = 1;
+    canvas.setup(fabricImg.width, fabricImg.height, &brush);
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    // draw on canvas canvas
-    canvasFbo.begin();
-    ofClear(255, 255, 255, 255);
-    ofSetColor(red, green, blue, alpha);
-    for (int i=0; i<strokes.size(); i++)
-    {
-        strokes[i]->draw();
-    }
-    if (currentStroke) {
-        currentStroke->draw();
-    }
-    canvasFbo.end();
-    
+    canvas.update();
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    applyBlur(canvasFbo);
-    
     // draw on screen
     ofClear(0);
     ofPushMatrix();
-    ofTranslate(translate);
     
     ofSetColor(255, 255, 255, 255);
     burnShader.begin();
@@ -69,7 +50,8 @@ void testApp::draw(){
     // can get the following two from the GPU pipeline itself?
     burnShader.setUniform2f("canvasSize", fabricImg.width, fabricImg.height);
     burnShader.setUniformTexture("fabricTex", fabricImg.getTextureReference(), 0);
-    burnShader.setUniformTexture("canvasTex", canvasFbo.getTextureReference(), 1);
+    burnShader.setUniformTexture("canvasTex", canvas.getTextureRef(), 1);
+    burnShader.setUniform1f("fabricAlpha", fabricAlpha);
     ofRect(0, 0, ofGetWidth(), ofGetHeight());
     burnShader.end();
     
@@ -78,17 +60,6 @@ void testApp::draw(){
 
 void testApp::exit()
 {
-    for (int i=0; i<strokes.size(); i++)
-    {
-        delete strokes[i];
-        strokes[i] = NULL;
-    }
-    
-    strokes.clear();
-    
-    if (currentStroke) {
-        delete currentStroke;
-    }
 }
 
 //--------------------------------------------------------------
@@ -108,32 +79,23 @@ void testApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-    if (!currentStroke) {
-        return;
-    }
-    
-    currentStroke->addPoint(ofVec2f(x, ofGetHeight()-y) * screenToCanvasScale);
+    canvas.mouseDragged(x, y, button);
 }
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button)
 {
-    currentStroke = new Stroke(ofVec2f(x, ofGetHeight()-y) * screenToCanvasScale);
+    canvas.mousePressed(x, y, button);
 }
 
 //--------------------------------------------------------------
 void testApp::mouseReleased(int x, int y, int button){
-    if (!currentStroke) {
-        return;
-    }
-    
-    strokes.push_back(currentStroke);
-    currentStroke = NULL;
+    canvas.mouseReleased(x, y, button);
 }
 
 //--------------------------------------------------------------
 void testApp::windowResized(int w, int h){
-    screenToCanvasScale = ofVec2f((float)fabricImg.width / ofGetWidth(), (float)fabricImg.height / ofGetHeight());
+    canvas.windowResized(w, h);
 }
 
 //--------------------------------------------------------------
@@ -144,33 +106,4 @@ void testApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void testApp::dragEvent(ofDragInfo dragInfo){ 
 
-}
-
-void testApp::applyBlur(ofFbo &fbo)
-{
-    horBlurShader.begin();
-    horBlurShader.setUniform1f("resolution", blurResolution);
-    horBlurShader.setUniform1f("radius", blurRadius);
-    
-    blurFbo.begin();
-    horBlurShader.setUniform2f("dir", 1, 0);
-    ofSetColor(255, 255, 255, 255);
-    fbo.draw(0, 0);
-    blurFbo.end();
-    
-    fbo.begin();
-    ofClear(0);
-    horBlurShader.setUniform2f("dir", 0, 1);
-    ofSetColor(255, 255, 255, 255);
-    blurFbo.draw(0, 0);
-    fbo.end();
-    
-    horBlurShader.end();
-}
-
-void testApp::clearCanvas()
-{
-    canvasFbo.begin();
-    ofClear(255, 255, 255, 255);
-    canvasFbo.end();
 }

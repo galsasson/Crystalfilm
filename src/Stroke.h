@@ -15,13 +15,14 @@
 class Stroke
 {
 public:
-    Stroke(ofVec2f start);
-    void addPoint(ofVec2f p);
+    Stroke(ofColor c);
+    void addPoint(ofVec3f p);
     virtual void update() {}
-    void draw();
+    virtual void draw();
     
-    ofPath path;
+    ofColor color;
     vector<ofPoint> vertices;
+    ofPath path;
 };
 
 #endif /* defined(__Crystalfilm__Stroke__) */

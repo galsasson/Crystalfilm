@@ -8,23 +8,21 @@
 
 #include "Stroke.h"
 
-Stroke::Stroke(ofVec2f start)
+Stroke::Stroke(ofColor c)
 {
-    path.setFilled(false);
-    path.moveTo(start);
+    color = c;
 }
 
-void Stroke::addPoint(ofVec2f p)
+void Stroke::addPoint(ofVec3f p)
 {
-    
-    path.lineTo(p);
-    vector<ofPolyline> outline = path.getOutline();
-    vertices = outline[0].getVertices();
+    vertices.push_back(p);//ofVec3f(p.x, p.y, 0));
 }
 
 void Stroke::draw()
 {
-    ofBeginShape();
-    ofVertices(vertices);
-    ofEndShape();
+    ofSetColor(color);
+    for (int i=0; i<vertices.size(); i++)
+    {
+        ofEllipse(vertices[i].x, vertices[i].y, 10, 10);
+    }
 }

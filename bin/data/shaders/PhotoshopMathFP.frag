@@ -267,6 +267,7 @@ uniform sampler2DRect fabricTex;
 uniform sampler2DRect canvasTex;
 uniform vec2 screenSize;
 uniform vec2 canvasSize;
+uniform float fabricAlpha;
 in vec2 varyingtexcoord;
 out vec4 outputColor;
 
@@ -277,6 +278,8 @@ void main()
     vec2 cuv = suv * canvasSize;
     vec4 fabric = texture(fabricTex, cuv);
     vec4 canvas = texture(canvasTex, cuv);
+    fabric.w = fabricAlpha;
+    
     outputColor = BlendLinearBurnf(fabric, canvas);
 }
 

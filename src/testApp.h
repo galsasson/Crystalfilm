@@ -4,7 +4,8 @@
 
 #include "ofMain.h"
 #include "ofxControlease.h"
-#include "Stroke.h"
+#include "Canvas.h"
+#include "Brush.h"
 
 class testApp : public ofBaseApp{
 
@@ -26,28 +27,13 @@ class testApp : public ofBaseApp{
 		
     
 private:
-    void applyBlur(ofFbo &fbo);
-    void clearCanvas();
+    Brush brush;
+    Canvas canvas;
 
-    ofxControlease control;
-    float red, green, blue, alpha;
-    ofVec2f translate;
     ofVec2f scale;
     
     ofShader burnShader;
     ofImage fabricImg;
-    ofFbo canvasFbo;
-
-    ofFbo blurFbo;
-    ofShader horBlurShader;
-    float blurResolution;
-    float blurRadius;
-    ofVec2f blurDirection;
-
+    float fabricAlpha;
     
-    ofVec2f screenToCanvasScale;
-    
-    
-    vector<Stroke*> strokes;
-    Stroke *currentStroke;
 };
