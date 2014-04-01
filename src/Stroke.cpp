@@ -8,7 +8,7 @@
 
 #include "Stroke.h"
 
-Stroke::Stroke(ofColor c)
+Stroke::Stroke(ofFloatColor c)
 {
     color = c;
 }

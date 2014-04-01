@@ -52,11 +52,14 @@ private:
     ofShader blurShader;
     ofVec2f blurDirection;
     
+    ofShader burnShader;
+    
     
     ofVec2f screenToCanvasScale;
     
-    
     vector<Stroke*> strokes;
     Stroke *currentStroke;
+    
+    ofImage fabricImg;
 };
 #endif /* defined(__Crystalfilm__Canvas__) */

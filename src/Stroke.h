@@ -15,12 +15,13 @@
 class Stroke
 {
 public:
-    Stroke(ofColor c);
+    Stroke(ofFloatColor c);
     void addPoint(ofVec3f p);
+    virtual void endStroke() {}
     virtual void update() {}
     virtual void draw();
     
-    ofColor color;
+    ofFloatColor color;
     vector<ofPoint> vertices;
     ofPath path;
 };

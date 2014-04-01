@@ -7,3 +7,8 @@
 //
 
 #include "Brush.h"
+
+ofFloatColor Brush::getFloatColor()
+{
+    return ofFloatColor(red/255, green/255, blue/255, alpha/255);
+}

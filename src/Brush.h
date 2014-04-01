@@ -24,6 +24,8 @@ public:
     int type;
     float red, green, blue, alpha;
     
+    ofFloatColor getFloatColor();
+    
 };
 
 #endif /* defined(__Crystalfilm__Brush__) */

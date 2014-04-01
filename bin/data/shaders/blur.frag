@@ -44,6 +44,6 @@ void main( void )
     sum += texture(tex0, vec2(tc.x + 4.0*blur*hstep, tc.y + 4.0*blur*vstep)) * 0.0162162162;
     
     //discard alpha for our simple demo, multiply by vertex color and return
-    outColor = vColor * vec4(sum.rgb, 1.0);
+    outColor = vColor * vec4(sum.rgba);
 }
 

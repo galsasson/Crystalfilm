@@ -18,5 +18,7 @@ void FlyingStroke::update()
     for (int i=0; i<vertices.size(); i++)
     {
         vertices[i].x -= 0.2;
-    }    
+    }
+    
+    vbo.setVertexData(&vertices[0], vertices.size(), GL_DYNAMIC_DRAW);
 }
