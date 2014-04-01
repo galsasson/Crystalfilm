@@ -23,7 +23,11 @@ public:
     
     ofFloatColor color;
     vector<ofPoint> vertices;
+    ofVbo vbo;
     ofPath path;
+    
+private:
+    void rebuildVbo();
 };
 
 #endif /* defined(__Crystalfilm__Stroke__) */

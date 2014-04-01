@@ -21,7 +21,6 @@ public:
     void endStroke();
     virtual void draw();
     
-    ofVbo vbo;
     bool bSolid;
 };
 #endif /* defined(__Crystalfilm__ShapeStroke__) */

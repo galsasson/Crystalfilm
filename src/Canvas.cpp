@@ -63,13 +63,13 @@ void Canvas::update()
         strokes[i]->update();
         strokes[i]->draw();
     }
-    fabricImg.getTextureReference().unbind();
-    burnShader.end();
     
     if (currentStroke) {
 //        currentStroke->update();
         currentStroke->draw();
     }
+    fabricImg.getTextureReference().unbind();
+    burnShader.end();
     canvasFbo.end();
     
     applyBlur(canvasFbo);
