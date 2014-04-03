@@ -12,7 +12,6 @@
 #include <iostream>
 #include "Stroke.h"
 #include "ShapeStroke.h"
-#include "FlyingStroke.h"
 #include "ofMain.h"
 #include "Brush.h"
 
@@ -36,30 +35,29 @@ public:
     float blurResolution;
     float blurRadius;
 
+    ofVec3f pos;
+    ofVec3f vel;
+    ofVec3f acc;
+    float distortion;
+    
 private:
     void applyBlur(ofFbo &fbo);
     void clearCanvas();
-    
-    Brush* brush;
-    
     ofVec2f toCanvas(ofVec2f p);
+
+    Brush* brush;
+    vector<Stroke*> strokes;
+    Stroke *currentStroke;
     
-    ofVec2f size;
-    
+    ofImage fabricImg;
     ofFbo canvasFbo;
-    
     ofFbo blurFbo;
     ofShader blurShader;
-    ofVec2f blurDirection;
-    
     ofShader burnShader;
     
     
     ofVec2f screenToCanvasScale;
     
-    vector<Stroke*> strokes;
-    Stroke *currentStroke;
     
-    ofImage fabricImg;
 };
 #endif /* defined(__Crystalfilm__Canvas__) */

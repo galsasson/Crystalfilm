@@ -10,12 +10,6 @@
 
 ShapeStroke::ShapeStroke(ofColor c) : Stroke(c)
 {
-    bSolid = false;
-}
-
-void ShapeStroke::endStroke()
-{
-    bSolid = true;
 }
 
 void ShapeStroke::draw()

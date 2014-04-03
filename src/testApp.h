@@ -27,8 +27,10 @@ class testApp : public ofBaseApp{
 		
     
 private:
+    ofxControlease control;
+    
     Brush brush;
-    Canvas canvas;
+    Canvas canvas[4];
 
     ofVec2f scale;
     

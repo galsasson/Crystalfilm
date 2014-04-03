@@ -264,17 +264,25 @@ vec3 BlendLuminosity(vec3 base, vec3 blend)
 
 // this is how we receive the texture
 uniform sampler2DRect tex0;
+uniform float bFixedCoords;
 in vec2 varyingtexcoord;
+in vec2 fixedCoords;
 in vec4 vColor;
 out vec4 outputColor;
 
 
 void main()
 {
-    vec4 texColor = texture(tex0, varyingtexcoord);
+    vec4 texColor;
+    if (bFixedCoords > 0) {
+        texColor = texture(tex0, fixedCoords);
+    }
+    else {
+        texColor = texture(tex0, varyingtexcoord);
+    }
     
-    outputColor = BlendLinearBurnf(texColor, vColor);
-    outputColor.w = 1.0;
+    outputColor = BlendLinearBurnf(vColor, texColor);
+//    outputColor.w = vColor.w;
 }
 
 

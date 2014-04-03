@@ -25,6 +25,7 @@ public:
     float red, green, blue, alpha;
     
     ofFloatColor getFloatColor();
+    void setColor(int index);
     
 };
 

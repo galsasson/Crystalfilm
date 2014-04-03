@@ -16,6 +16,7 @@ in vec2 texcoord;
 // this is something we're creating for this shader
 out vec2 varyingtexcoord;
 out vec4 vColor;
+out vec2 fixedCoords;
 
 // this is coming from our C++ code
 //uniform float mouseX;
@@ -24,6 +25,7 @@ void main()
 {
     // here we move the texture coordinates
     varyingtexcoord = vec2(texcoord.x, texcoord.y);
+    fixedCoords = vec2(position.x, position.y);
     vColor = color;
     
     // send the vertices to the fragment shader

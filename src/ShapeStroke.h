@@ -18,9 +18,6 @@ class ShapeStroke : public Stroke
 public:
     
     ShapeStroke(ofColor c);
-    void endStroke();
     virtual void draw();
-    
-    bool bSolid;
 };
 #endif /* defined(__Crystalfilm__ShapeStroke__) */

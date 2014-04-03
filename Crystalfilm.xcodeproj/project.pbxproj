@@ -14,7 +14,6 @@
 		2A1A973418E79C0B00AA7A46 /* Canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A973218E79C0B00AA7A46 /* Canvas.cpp */; };
 		2A6DD33218E9178E0016D86B /* ShapeStroke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DD33018E9178E0016D86B /* ShapeStroke.cpp */; };
 		2A6DD33518E91D620016D86B /* Brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DD33318E91D620016D86B /* Brush.cpp */; };
-		2A6DD33818E92F9D0016D86B /* FlyingStroke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DD33618E92F9D0016D86B /* FlyingStroke.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
 		510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */; };
@@ -116,8 +115,6 @@
 		2A6DD33118E9178E0016D86B /* ShapeStroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeStroke.h; sourceTree = "<group>"; };
 		2A6DD33318E91D620016D86B /* Brush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Brush.cpp; sourceTree = "<group>"; };
 		2A6DD33418E91D620016D86B /* Brush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brush.h; sourceTree = "<group>"; };
-		2A6DD33618E92F9D0016D86B /* FlyingStroke.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FlyingStroke.cpp; sourceTree = "<group>"; };
-		2A6DD33718E92F9D0016D86B /* FlyingStroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlyingStroke.h; sourceTree = "<group>"; };
 		2B40EDA85BEB63E46785BC29 /* tinyxml.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxml.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxml.cpp; sourceTree = SOURCE_ROOT; };
 		2FD4B0329909D3527F003494 /* UdpSocket.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = UdpSocket.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/UdpSocket.h; sourceTree = SOURCE_ROOT; };
 		318ABED90EADFB757FFDCCAF /* ofxVectorGraphics.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxVectorGraphics.cpp; path = ../../../addons/ofxVectorGraphics/src/ofxVectorGraphics.cpp; sourceTree = SOURCE_ROOT; };
@@ -497,8 +494,6 @@
 				2A6DD33118E9178E0016D86B /* ShapeStroke.h */,
 				2A6DD33318E91D620016D86B /* Brush.cpp */,
 				2A6DD33418E91D620016D86B /* Brush.h */,
-				2A6DD33618E92F9D0016D86B /* FlyingStroke.cpp */,
-				2A6DD33718E92F9D0016D86B /* FlyingStroke.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -653,7 +648,6 @@
 				879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */,
 				603044E656EA8D499FCF7DEA /* ofxVectorGraphics.cpp in Sources */,
 				F01092BB147FA462845C38C7 /* CreEPS.cpp in Sources */,
-				2A6DD33818E92F9D0016D86B /* FlyingStroke.cpp in Sources */,
 				63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */,
 				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,
 				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,

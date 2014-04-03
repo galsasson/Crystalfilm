@@ -10,6 +10,8 @@
 
 Canvas::Canvas()
 {
+    currentStroke = NULL;
+    distortion = 0;
 }
 
 Canvas::~Canvas()
@@ -29,23 +31,23 @@ Canvas::~Canvas()
 
 void Canvas::setup(int w, int h, Brush* b)
 {
-    size = ofVec2f(w, h);
     brush = b;
 
+//    fabricImg.loadImage("art/texture-woven-fabric.jpg");
     fabricImg.loadImage("art/Yellow_Velvet_Fabric_Texture_by_Enchantedgal_Stock.jpg");
-
+//    fabricImg.loadImage("art/fabric_decorated.jpg");
+//    fabricImg.loadImage("art/blue_mohair_fabric_texture.jpg");
+    
     blurShader.load("shaders/blur");
     burnShader.load("shaders/burn");
-    canvasFbo.allocate(w, h, GL_RGBA8);
+    canvasFbo.allocate(w, h, GL_RGBA);
     canvasFbo.begin();
     ofClear(255, 255, 255, 0);
     canvasFbo.end();
-    blurFbo.allocate(w, h, GL_RGBA8);
+    blurFbo.allocate(w, h, GL_RGBA);
     blurFbo.begin();
     ofClear(255, 255, 255, 0);
     blurFbo.end();
-    
-    currentStroke = NULL;
     
     // call this to set up screenToCanvasScale
     windowResized(w, h);
@@ -57,15 +59,19 @@ void Canvas::update()
     canvasFbo.begin();
     ofClear(255, 255, 255, 0);
     burnShader.begin();
+    burnShader.setUniform1f("bFixedCoords", 1);
+//    ofSetColor(255, 255, 255, 255);
+//    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     fabricImg.getTextureReference().bind();
     for (int i=0; i<strokes.size(); i++)
     {
+        strokes[i]->translate(vel);
+        strokes[i]->applyDistorion(distortion);
         strokes[i]->update();
         strokes[i]->draw();
     }
     
     if (currentStroke) {
-//        currentStroke->update();
         currentStroke->draw();
     }
     fabricImg.getTextureReference().unbind();
@@ -103,14 +109,10 @@ void Canvas::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void Canvas::mousePressed(int x, int y, int button)
 {
-    if (brush->type == 0)
-    {
+//    if (brush->type == 0)
+//    {
         currentStroke = new ShapeStroke(brush->getFloatColor());
-    }
-    else
-    {
-        currentStroke = new FlyingStroke(brush->getFloatColor());
-    }
+//    }
     currentStroke->addPoint(toCanvas(ofVec2f(x, y)));
 }
 
@@ -120,16 +122,13 @@ void Canvas::mouseReleased(int x, int y, int button){
         return;
     }
     
-    currentStroke->endStroke();
     strokes.push_back(currentStroke);
     currentStroke = NULL;
 }
 
 //--------------------------------------------------------------
 void Canvas::windowResized(int w, int h){
-    cout<<"Canvas::windowResized"<<endl;
-    size.set(w, h);
-    screenToCanvasScale = ofVec2f(size.x / ofGetWidth(), size.y / ofGetHeight());
+    screenToCanvasScale = ofVec2f((float)w / ofGetWidth(), (float)h / ofGetHeight());
 }
 
 void Canvas::applyBlur(ofFbo &fbo)
