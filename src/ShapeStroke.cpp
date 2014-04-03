@@ -17,8 +17,14 @@ void ShapeStroke::draw()
     ofPushStyle();
     ofSetColor(color);
     ofFill();
+
+    ofBeginShape();
     
-    vbo.drawElements(GL_TRIANGLE_FAN, vertices.size());
+    for (int i=0; i<vertices.size(); i++)
+    {
+        ofVertex(vertices[i].x, vertices[i].y, vertices[i].z);
+    }
+    ofEndShape();
     
     ofPopStyle();
 }

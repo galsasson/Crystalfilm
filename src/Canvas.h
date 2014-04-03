@@ -39,6 +39,7 @@ public:
     ofVec3f vel;
     ofVec3f acc;
     float distortion;
+    float temporalDistortion;
     
 private:
     void applyBlur(ofFbo &fbo);
@@ -55,6 +56,9 @@ private:
     ofShader blurShader;
     ofShader burnShader;
     
+    ofShader testShader;
+    
+
     
     ofVec2f screenToCanvasScale;
     

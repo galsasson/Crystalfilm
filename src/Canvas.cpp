@@ -12,6 +12,7 @@ Canvas::Canvas()
 {
     currentStroke = NULL;
     distortion = 0;
+    temporalDistortion = 0;
 }
 
 Canvas::~Canvas()
@@ -40,13 +41,14 @@ void Canvas::setup(int w, int h, Brush* b)
     
     blurShader.load("shaders/blur");
     burnShader.load("shaders/burn");
-    canvasFbo.allocate(w, h, GL_RGBA);
+    testShader.load("shaders/test");
+    canvasFbo.allocate(w, h, GL_RGBA8);
     canvasFbo.begin();
-    ofClear(255, 255, 255, 0);
+    ofClear(0, 0, 0, 0);
     canvasFbo.end();
-    blurFbo.allocate(w, h, GL_RGBA);
+    blurFbo.allocate(w, h, GL_RGBA8);
     blurFbo.begin();
-    ofClear(255, 255, 255, 0);
+    ofClear(0, 0, 0, 0);
     blurFbo.end();
     
     // call this to set up screenToCanvasScale
@@ -57,12 +59,11 @@ void Canvas::update()
 {
     // draw on canvas
     canvasFbo.begin();
-    ofClear(255, 255, 255, 0);
-    burnShader.begin();
-    burnShader.setUniform1f("bFixedCoords", 1);
-//    ofSetColor(255, 255, 255, 255);
-//    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-    fabricImg.getTextureReference().bind();
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
+    glBlendEquation(GL_ADD);
+//    testShader.begin();
+    ofClear(0, 0, 0, 255);
     for (int i=0; i<strokes.size(); i++)
     {
         strokes[i]->translate(vel);
@@ -74,8 +75,9 @@ void Canvas::update()
     if (currentStroke) {
         currentStroke->draw();
     }
-    fabricImg.getTextureReference().unbind();
-    burnShader.end();
+
+    glDisable(GL_BLEND);
+//    testShader.end();
     canvasFbo.end();
     
     applyBlur(canvasFbo);

@@ -43,9 +43,9 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-//    ofClear(255, 0, 255);
-//    canvas[0].draw();
-//    return;
+    ofClear(0);
+    canvas[0].draw();
+    return;
     
     // draw on screen
     ofClear(0);

@@ -15,8 +15,8 @@ ofFloatColor Brush::getFloatColor()
 
 void Brush::setColor(int index)
 {
-    int low = 50;
-    int high = 180;
+    int low = 0;
+    int high = 255;
     if (index == 0) {
         red = low;
         green = low;
@@ -43,9 +43,9 @@ void Brush::setColor(int index)
         blue = high;
     }
     else if (index == 5) {
-        red = 50;
-        green = 50;
-        blue = 255;
+        red = low;
+        green = low;
+        blue = high;
     }
     else if (index == 6) {
         red = high;
@@ -58,5 +58,5 @@ void Brush::setColor(int index)
         blue = high;
     }
     
-    alpha = 251;
+    alpha = 200;
 }
