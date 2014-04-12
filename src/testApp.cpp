@@ -5,7 +5,7 @@ void testApp::setup(){
     control.setup("Crystalfilm", 6002);
     fabricAlpha = 1;
     control.addInput("Fabric Alpha", &fabricAlpha);
-    brush.setColor(1);
+    brush.setColor(7);
     control.addInput("stroke RED", &brush.red);
     control.addInput("stroke GREEN", &brush.green);
     control.addInput("stroke BLUE", &brush.blue);
@@ -22,6 +22,8 @@ void testApp::setup(){
     control.addInput("[A] Velocity Z", &canvas[0].vel.z);
     canvas[0].distortion = 0;
     control.addInput("[A] Distortion", &canvas[0].distortion);
+    
+    control.addOutput("[A] Distortion", &canvas[0].distortion);
 
     
 //    fabricImg.loadImage("art/texture-woven-fabric.jpg");
@@ -66,11 +68,16 @@ void testApp::keyPressed(int key){
         key <= 55) {
         brush.setColor(key-48);
     }
+    else if (key == 4352) {
+        brush.type = 1;
+    }
 }
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){
-
+    if (key == 4352) {
+        brush.type = 0;
+    }
 }
 
 //--------------------------------------------------------------

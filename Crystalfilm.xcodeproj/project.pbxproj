@@ -15,6 +15,8 @@
 		2A6DD33218E9178E0016D86B /* ShapeStroke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DD33018E9178E0016D86B /* ShapeStroke.cpp */; };
 		2A6DD33518E91D620016D86B /* Brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A6DD33318E91D620016D86B /* Brush.cpp */; };
 		2ABE5C8B18EDD1A2002DCD65 /* LineStroke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ABE5C8918EDD1A2002DCD65 /* LineStroke.cpp */; };
+		2AFFB48718F86CB500D522BD /* ofxControleaseOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB48518F86CB500D522BD /* ofxControleaseOutput.cpp */; };
+		2AFFB48A18F86CCC00D522BD /* ofxControleaseInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB48818F86CCC00D522BD /* ofxControleaseInput.cpp */; };
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
 		510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */; };
@@ -118,6 +120,11 @@
 		2A6DD33418E91D620016D86B /* Brush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brush.h; sourceTree = "<group>"; };
 		2ABE5C8918EDD1A2002DCD65 /* LineStroke.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LineStroke.cpp; sourceTree = "<group>"; };
 		2ABE5C8A18EDD1A2002DCD65 /* LineStroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineStroke.h; sourceTree = "<group>"; };
+		2AFFB48518F86CB500D522BD /* ofxControleaseOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxControleaseOutput.cpp; path = ../../../addons/ofxControlease/src/ofxControleaseOutput.cpp; sourceTree = "<group>"; };
+		2AFFB48618F86CB500D522BD /* ofxControleaseOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxControleaseOutput.h; path = ../../../addons/ofxControlease/src/ofxControleaseOutput.h; sourceTree = "<group>"; };
+		2AFFB48818F86CCC00D522BD /* ofxControleaseInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxControleaseInput.cpp; path = ../../../addons/ofxControlease/src/ofxControleaseInput.cpp; sourceTree = "<group>"; };
+		2AFFB48918F86CCC00D522BD /* ofxControleaseInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxControleaseInput.h; path = ../../../addons/ofxControlease/src/ofxControleaseInput.h; sourceTree = "<group>"; };
+		2AFFB48B18F86D7500D522BD /* ControleaseType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ControleaseType.h; path = ../../../addons/ofxControlease/src/ControleaseType.h; sourceTree = "<group>"; };
 		2B40EDA85BEB63E46785BC29 /* tinyxml.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxml.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxml.cpp; sourceTree = SOURCE_ROOT; };
 		2FD4B0329909D3527F003494 /* UdpSocket.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = UdpSocket.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/UdpSocket.h; sourceTree = SOURCE_ROOT; };
 		318ABED90EADFB757FFDCCAF /* ofxVectorGraphics.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxVectorGraphics.cpp; path = ../../../addons/ofxVectorGraphics/src/ofxVectorGraphics.cpp; sourceTree = SOURCE_ROOT; };
@@ -283,6 +290,11 @@
 			children = (
 				3C04438DED59E04E00CD6982 /* ofxControlease.cpp */,
 				E66195D1A80713AF23EC6276 /* ofxControlease.h */,
+				2AFFB48518F86CB500D522BD /* ofxControleaseOutput.cpp */,
+				2AFFB48618F86CB500D522BD /* ofxControleaseOutput.h */,
+				2AFFB48818F86CCC00D522BD /* ofxControleaseInput.cpp */,
+				2AFFB48918F86CCC00D522BD /* ofxControleaseInput.h */,
+				2AFFB48B18F86D7500D522BD /* ControleaseType.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -635,12 +647,14 @@
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				2A6DD33518E91D620016D86B /* Brush.cpp in Sources */,
+				2AFFB48A18F86CCC00D522BD /* ofxControleaseInput.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
 				72A929D3561B8232A182ABFC /* ofxOscBundle.cpp in Sources */,
 				2A1A973418E79C0B00AA7A46 /* Canvas.cpp in Sources */,
 				5864AD82E20F15536D054EA3 /* ofxOscMessage.cpp in Sources */,
 				4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */,
 				640279EE111671BD026CB013 /* ofxOscReceiver.cpp in Sources */,
+				2AFFB48718F86CB500D522BD /* ofxControleaseOutput.cpp in Sources */,
 				8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */,
 				ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */,
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,

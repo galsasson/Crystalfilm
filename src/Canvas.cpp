@@ -111,10 +111,14 @@ void Canvas::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void Canvas::mousePressed(int x, int y, int button)
 {
-//    if (brush->type == 0)
-//    {
+    if (brush->type == 0)
+    {
         currentStroke = new ShapeStroke(brush->getFloatColor());
-//    }
+    }
+    else {
+        currentStroke = new LineStroke(brush->getFloatColor());
+    }
+    
     currentStroke->addPoint(toCanvas(ofVec2f(x, y)));
 }
 

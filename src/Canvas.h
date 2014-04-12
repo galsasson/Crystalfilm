@@ -12,6 +12,7 @@
 #include <iostream>
 #include "Stroke.h"
 #include "ShapeStroke.h"
+#include "LineStroke.h"
 #include "ofMain.h"
 #include "Brush.h"
 

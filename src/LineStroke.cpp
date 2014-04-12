@@ -16,15 +16,23 @@ void LineStroke::draw()
 {
     ofPushStyle();
     ofSetColor(color);
+    ofSetLineWidth(5);
     ofNoFill();
 
-    ofSetLineWidth(10);
-    glBegin(GL_LINE_STRIP);
+    ofBeginShape();
     for (int i=0; i<vertices.size(); i++)
     {
-        glVertex3f(vertices[i].x, vertices[i].y, vertices[i].z);
+        ofVertex(vertices[i]);
     }
-    glEnd();
+    ofEndShape();
+    
+//    ofSetLineWidth(10);
+//    glBegin(GL_LINE_STRIP);
+//    for (int i=0; i<vertices.size(); i++)
+//    {
+//        glVertex3f(vertices[i].x, vertices[i].y, vertices[i].z);
+//    }
+//    glEnd();
     
     ofPopStyle();
 }
